@@ -13,11 +13,14 @@ class TouchTracker {
 	func trackTouches(on window: UIWindow) {
 		guard trackedWindows[window] == nil else { return }
 		let catcher = TouchCatcher(target: self, action: #selector(touchesUpdated(_:)))
+		catcher.touchesUpdated = { _ in
+			self.touchesUpdated(catcher)
+		}
 
 		window.addGestureRecognizer(catcher)
 
 		let shapeLayer = CAShapeLayer()
-		shapeLayer.fillColor = UIColor.lightGray.cgColor
+		shapeLayer.fillColor = UIColor.lightGray.withAlphaComponent(0.8).cgColor
 		shapeLayer.strokeColor = UIColor.darkGray.cgColor
 		shapeLayer.zPosition = .greatestFiniteMagnitude
 
@@ -46,7 +49,7 @@ class TouchTracker {
 		let locations = allTouches.map { $0.location(in: window) }
 
 		let path = locations.reduce(into: CGMutablePath()) {
-			$0.addArc(center: $1, radius: 40, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+			$0.addArc(center: $1, radius: 20, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
 		}
 
 		trackedLayers[sender]?.path = path

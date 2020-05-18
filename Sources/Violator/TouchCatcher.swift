@@ -10,6 +10,8 @@ final class TouchCatcher: UIGestureRecognizer {
 
 	private(set) var allTouches: Set<UITouch> = []
 
+	var touchesUpdated: ((Set<UITouch>) -> Void)?
+
 	override init(target: Any?, action: Selector?) {
 		super.init(target: target, action: action)
 		commonInit()
@@ -19,28 +21,32 @@ final class TouchCatcher: UIGestureRecognizer {
 		cancelsTouchesInView = false
 		requiresExclusiveTouchType = false
 	}
-
+	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesBegan(touches, with: event)
 		allTouches = allTouches.union(touches)
-		state = .began
+		touchesUpdated?(allTouches)
+		//		state = .began
 	}
-
+	
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesMoved(touches, with: event)
-		state = .changed
+		touchesUpdated?(allTouches)
+		//		state = .changed
 	}
-
+	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesEnded(touches, with: event)
 		allTouches = allTouches.subtracting(touches)
-		state = .ended
+		touchesUpdated?(allTouches)
+		//		state = .ended
 	}
-
+	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesCancelled(touches, with: event)
 		allTouches = allTouches.subtracting(touches)
-		state = .cancelled
+		touchesUpdated?(allTouches)
+		//		state = .cancelled
 	}
 
 	override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
