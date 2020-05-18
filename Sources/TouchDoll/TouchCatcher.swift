@@ -10,6 +10,7 @@ import UIKit
 /// This recognizer is configured to detect and forward *every* touch, but also passes through to any following recognizers/touch input.
 final class TouchCatcher: UIGestureRecognizer {
 
+	/// Keeps track of all touches throughout their lifetime
 	private(set) var allTouches: Set<UITouch> = []
 
 	override init(target: Any?, action: Selector?) {
@@ -54,12 +55,14 @@ final class TouchCatcher: UIGestureRecognizer {
 		}
 	}
 
+	/// Nothing should prevent this gesture recognizer from activating for as long as it's enabled.
 	override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
 		false
 	}
 }
 
 extension TouchCatcher: UIGestureRecognizerDelegate {
+	/// No touch events should be consumed by this gesture recognizer alone.
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 		true
 	}

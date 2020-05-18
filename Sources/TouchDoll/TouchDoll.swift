@@ -10,6 +10,7 @@ class TouchDoll {
 
 	private init() {}
 
+	/// Initiates touch tracking on a given window, also caching important references to speed up future execution.
 	func trackTouches(on window: UIWindow) {
 		guard trackedWindows[window] == nil else { return }
 		let catcher = TouchCatcher(target: self, action: #selector(touchesUpdated(_:)))
@@ -28,6 +29,7 @@ class TouchDoll {
 		trackedCatchers[catcher] = window
 	}
 
+	/// Ceases touch tracking on a given window, releasing previously cached references.
 	func stopTrackingTouches(on window: UIWindow) {
 		guard let (catcher, shapeLayer) = trackedWindows[window] else { return }
 
@@ -39,6 +41,7 @@ class TouchDoll {
 		trackedCatchers[catcher] = nil
 	}
 
+	/// This is called by the gesture recognizer when a touch event occurrs. This should not be called directly.
 	@objc func touchesUpdated(_ sender: TouchCatcher) {
 		let allTouches = sender.allTouches
 
