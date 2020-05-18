@@ -1,8 +1,8 @@
 import UIKit
 
 
-class TouchTracker {
-	static let shared = TouchTracker()
+class Violator {
+	static let shared = Violator()
 
 	private var trackedWindows = [UIWindow: (touches: TouchCatcher, layer: CAShapeLayer)]()
 	private var trackedLayers = [TouchCatcher: CAShapeLayer]()
@@ -13,9 +13,6 @@ class TouchTracker {
 	func trackTouches(on window: UIWindow) {
 		guard trackedWindows[window] == nil else { return }
 		let catcher = TouchCatcher(target: self, action: #selector(touchesUpdated(_:)))
-		catcher.touchesUpdated = { _ in
-			self.touchesUpdated(catcher)
-		}
 
 		window.addGestureRecognizer(catcher)
 
@@ -49,16 +46,13 @@ class TouchTracker {
 		let locations = allTouches.map { $0.location(in: window) }
 
 		let path = locations.reduce(into: CGMutablePath()) {
-			$0.addArc(center: $1, radius: 20, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+			let radius: CGFloat = 25
+			let tl = CGPoint(x: $1.x - radius, y: $1.y - radius)
+			$0.move(to: tl)
+			let rect = CGRect(origin: tl, size: CGSize(width: radius * 2, height: radius * 2))
+			$0.addEllipse(in: rect)
 		}
 
 		trackedLayers[sender]?.path = path
-	}
-
-}
-
-extension UIWindow {
-	public func showTouches() {
-		TouchTracker.shared.trackTouches(on: self)
 	}
 }
