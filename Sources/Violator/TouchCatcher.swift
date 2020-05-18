@@ -6,6 +6,8 @@
 //
 import UIKit
 
+
+/// This recognizer is configured to detect and forward *every* touch, but also passes through to any following recognizers/touch input.
 final class TouchCatcher: UIGestureRecognizer {
 
 	private(set) var allTouches: Set<UITouch> = []

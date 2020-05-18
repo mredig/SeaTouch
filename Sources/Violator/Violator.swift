@@ -17,8 +17,8 @@ class Violator {
 		window.addGestureRecognizer(catcher)
 
 		let shapeLayer = CAShapeLayer()
-		shapeLayer.fillColor = UIColor.lightGray.withAlphaComponent(0.8).cgColor
-		shapeLayer.strokeColor = UIColor.darkGray.cgColor
+		shapeLayer.fillColor = UIColor.lightGray.withAlphaComponent(0.6).cgColor
+		shapeLayer.strokeColor = UIColor.darkGray.withAlphaComponent(0.8).cgColor
 		shapeLayer.zPosition = .greatestFiniteMagnitude
 
 		window.layer.addSublayer(shapeLayer)
