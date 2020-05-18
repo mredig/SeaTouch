@@ -2,6 +2,8 @@
 
 Shows you where on the screen it's being touched.
 
+![preview](demo.apng)
+
 
 ### Installation:
 
@@ -14,7 +16,9 @@ Shows you where on the screen it's being touched.
 	
 	//...
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		#if DEBUG
 		window?.showTouches()
+		#endif
 		return true
 	}
 	```
