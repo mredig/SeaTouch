@@ -9,10 +9,10 @@ import UIKit
 
 extension UIWindow {
 	public func showTouches() {
-		Violator.shared.trackTouches(on: self)
+		TouchDoll.shared.trackTouches(on: self)
 	}
 
 	public func hideTouches() {
-		Violator.shared.stopTrackingTouches(on: self)
+		TouchDoll.shared.stopTrackingTouches(on: self)
 	}
 }

@@ -1,7 +1,7 @@
 import XCTest
 
-import ViolatorTests
+import TouchDollTests
 
 var tests = [XCTestCaseEntry]()
-tests += ViolatorTests.allTests()
+tests += TouchDollTests.allTests()
 XCTMain(tests)

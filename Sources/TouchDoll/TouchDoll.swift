@@ -1,8 +1,8 @@
 import UIKit
 
 
-class Violator {
-	static let shared = Violator()
+class TouchDoll {
+	static let shared = TouchDoll()
 
 	private var trackedWindows = [UIWindow: (touches: TouchCatcher, layer: CAShapeLayer)]()
 	private var trackedLayers = [TouchCatcher: CAShapeLayer]()

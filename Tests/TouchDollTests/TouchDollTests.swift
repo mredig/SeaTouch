@@ -1,7 +1,7 @@
 import XCTest
-@testable import Violator
+@testable import TouchDoll
 
-final class ViolatorTests: XCTestCase {
+final class TouchDollTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
