@@ -37,13 +37,21 @@ final class TouchCatcher: UIGestureRecognizer {
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesEnded(touches, with: event)
 		allTouches = allTouches.subtracting(touches)
-		state = .ended
+		if allTouches.isEmpty {
+			state = .ended
+		} else {
+			state = .changed
+		}
 	}
 
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesCancelled(touches, with: event)
 		allTouches = allTouches.subtracting(touches)
-		state = .cancelled
+		if allTouches.isEmpty {
+			state = .cancelled
+		} else {
+			state = .changed
+		}
 	}
 
 	override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
