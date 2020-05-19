@@ -6,7 +6,7 @@ class TouchDoll {
 
 	private var trackedWindows = [UIWindow: (touches: TouchCatcher, layer: CAShapeLayer)]()
 	private var trackedLayers = [TouchCatcher: CAShapeLayer]()
-	private var	trackedCatchers = [TouchCatcher: UIWindow]()
+	private var trackedCatchers = [TouchCatcher: UIWindow]()
 
 	private init() {}
 
