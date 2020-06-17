@@ -20,7 +20,8 @@ class TouchDoll {
 		let shapeLayer = CAShapeLayer()
 		shapeLayer.fillColor = UIColor.lightGray.withAlphaComponent(0.6).cgColor
 		shapeLayer.strokeColor = UIColor.darkGray.withAlphaComponent(0.8).cgColor
-		shapeLayer.zPosition = .greatestFiniteMagnitude
+		// would use .greatestFiniteMagnitude, but CoreAnimation complains. Probably not using Double internally?
+		shapeLayer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
 
 		window.layer.addSublayer(shapeLayer)
 
