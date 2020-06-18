@@ -13,6 +13,18 @@ final class TouchCatcher: UIGestureRecognizer {
 	/// Keeps track of all touches throughout their lifetime
 	private(set) var allTouches: Set<UITouch> = []
 
+	private var _newTouches: Set<UITouch> = []
+	private(set) var newTouches: Set<UITouch> {
+		get {
+			let touches = _newTouches
+			_newTouches = []
+			return touches
+		}
+		set {
+			_newTouches = newValue
+		}
+	}
+
 	override init(target: Any?, action: Selector?) {
 		super.init(target: target, action: action)
 		commonInit()
@@ -26,12 +38,13 @@ final class TouchCatcher: UIGestureRecognizer {
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesBegan(touches, with: event)
-		allTouches = allTouches.union(touches)
+		newTouches = newTouches.union(touches)
 		state = .began
 	}
 
 	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
 		super.touchesMoved(touches, with: event)
+		allTouches = allTouches.union(touches)
 		state = .changed
 	}
 
