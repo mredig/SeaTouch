@@ -1,8 +1,8 @@
 import UIKit
 import XCTest
-@testable import TouchDoll
+@testable import SeaTouch
 
-final class TouchDollTests: XCTestCase {
+final class SeaTouchTests: XCTestCase {
 	func testWindowExtension() {
 		let window = UIWindow()
 
@@ -18,7 +18,7 @@ final class TouchDollTests: XCTestCase {
 		let hasCatcher = window.gestureRecognizers?.contains(where: { TouchCatcher.self == type(of: $0) })
 		XCTAssertTrue(hasCatcher == true)
 
-		let hasShapeLayer = window.layer.sublayers?.contains(where: { CAShapeLayer.self == type(of: $0) })
+		let hasShapeLayer = window.layer.sublayers?.contains(where: { RippleShapeLayer.self == type(of: $0) })
 		XCTAssertTrue(hasShapeLayer == true)
 		XCTAssertEqual(window.layer.sublayers?.count, 1)
 

@@ -1,7 +1,7 @@
 import XCTest
 
-import TouchDollTests
+import SeaTouchTests
 
 var tests = [XCTestCaseEntry]()
-tests += TouchDollTests.allTests()
+tests += SeaTouchTests.allTests()
 XCTMain(tests)

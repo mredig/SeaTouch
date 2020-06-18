@@ -1,8 +1,8 @@
 import UIKit
 
 
-class TouchDoll {
-	static let shared = TouchDoll()
+class SeaTouch {
+	static let shared = SeaTouch()
 
 	private var trackedWindows = [UIWindow: (touches: TouchCatcher, layer: RippleShapeLayer)]()
 	private var trackedLayers = [TouchCatcher: RippleShapeLayer]()

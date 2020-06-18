@@ -1,6 +1,6 @@
-# TouchDoll
+# SeaTouch
 
-Shows you where on the screen it's being touched.
+Displays where the user is touching on screen with elegant ripples and dots.
 
 ![preview](demo.apng)
 
@@ -8,11 +8,11 @@ Shows you where on the screen it's being touched.
 ### Installation:
 
 1. Add the following to your swift packages in Xcode:
-	* `https://github.com/mredig/TouchDoll.git`
+	* `https://github.com/mredig/SeaTouch.git`
 1. Early in your app lifecycle (eg, `AppDelegate`,  `SceneDelegate`, or even just the first `UIViewController` on screen):
 	```swift
 	//...
-	import TouchDoll
+	import SeaTouch
 	
 	//...
 	func someEarlyCalledMethod() {
