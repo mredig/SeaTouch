@@ -11,7 +11,7 @@ import UIKit
 class RippleShapeLayer: CAShapeLayer {
 
 	private var animatingSublayers: Set<CAShapeLayer> = []
-	private var	availableSublayers: Set<CAShapeLayer> = []
+	private var availableSublayers: Set<CAShapeLayer> = []
 
 	func dequeueRippleSublayer() -> CAShapeLayer {
 		let layer: CAShapeLayer
